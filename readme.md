@@ -54,7 +54,7 @@ class Task:
 
 **Example Response:**
 
-![Producer Response - Task Added Successfully](images/Screenshot_2026-02-15_224223.png)
+![Producer Response - Task Added Successfully](images/Screenshot%202026-02-15%20224223.png)
 
 ```json
 {
@@ -145,7 +145,7 @@ Here's a real example of the system in action. The worker logs show actual task 
 
 ### Worker Processing Tasks
 
-![Worker Log - Task Execution in Progress](images/Screenshot_2026-02-15_224316.png)
+![Worker Log - Task Execution in Progress](images/Screenshot%202026-02-15%20224316.png)
 
 As shown above, the worker:
 1. Receives the task (resize_image in this case)
@@ -161,7 +161,7 @@ You can see multiple tasks being processed:
 
 ### Test Results
 
-![Test Script Results - 6 Tasks Processed Successfully](images/Screenshot_2026-02-15_224343.png)
+![Test Script Results - 6 Tasks Processed Successfully](images/Screenshot%202026-02-15%20224343.png)
 
 The test script successfully:
 - Sends email tasks to different recipients
@@ -173,7 +173,7 @@ The test script successfully:
 
 ### Final Metrics
 
-![Final Metrics - All Tasks Completed](images/Screenshot_2026-02-15_224402.png)
+![Final Metrics - All Tasks Completed](images/Screenshot%202026-02-15%20224402.png)
 
 Final metrics show:
 - **6 jobs completed** (jobs_done: 6)
