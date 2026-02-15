@@ -53,6 +53,9 @@ class Task:
 ```
 
 **Example Response:**
+
+![Producer Response - Task Added Successfully](images/Screenshot_2026-02-15_224223.png)
+
 ```json
 {
     "status": "success",
@@ -61,12 +64,15 @@ class Task:
 }
 ```
 
+As you can see above, the producer successfully receives the task and responds with a 201 status code, confirming that the task has been added to the queue.
+
 ### 2. Worker
 
 - Takes the jobs from the queue in a reliable manner and executes them
 - Runs **3 worker threads in parallel** (configurable) for fast execution
 - Provides a `/metrics` endpoint to view statistics
 - Automatically retries failed tasks
+- Logs all task execution to `logs/worker.log`
 
 #### How to view the status of your jobs?
 
@@ -132,6 +138,53 @@ TASK_HANDLERS = {
     'generate_pdf': execute_generate_pdf,
 }
 ```
+
+## Live Example - Task Execution
+
+Here's a real example of the system in action. The worker logs show actual task execution:
+
+### Worker Processing Tasks
+
+![Worker Log - Task Execution in Progress](images/Screenshot_2026-02-15_224316.png)
+
+As shown above, the worker:
+1. Receives the task (resize_image in this case)
+2. Extracts the payload (image path, dimensions)
+3. Processes the task
+4. Logs the completion with timestamp
+
+You can see multiple tasks being processed:
+- Task Received: resize_image with payload `{'image_path': '/images/photo.jpg', 'new_x': 1024, 'new_y': 768}`
+- Task Received: generate_pdf with payload `{'report_name': 'Q4 Sales Report', 'output_path': '/reports/q4_2024.pdf'}`
+- Image resized from original to 1024x768
+- Task Completed: resize_image
+
+### Test Results
+
+![Test Script Results - 6 Tasks Processed Successfully](images/Screenshot_2026-02-15_224343.png)
+
+The test script successfully:
+- Sends email tasks to different recipients
+- Sends image resize tasks
+- Sends PDF generation tasks
+- Sends notification tasks
+- All tasks return 201 (Created) status
+- Queue processes all tasks successfully
+
+### Final Metrics
+
+![Final Metrics - All Tasks Completed](images/Screenshot_2026-02-15_224402.png)
+
+Final metrics show:
+- **6 jobs completed** (jobs_done: 6)
+- **0 jobs failed** (jobs_failed: 0)
+- **0 tasks in queue** (total_jobs_in_queue: 0)
+- **Queue is empty** - all tasks processed
+
+This demonstrates the system working perfectly with 100% success rate!
+
+
+
 
 ## Quick Start
 
